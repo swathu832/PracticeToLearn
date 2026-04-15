@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "npx serve accessibility-demo --listen 3000"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "agentic-flow": "^2.0.7"
+  }
+}

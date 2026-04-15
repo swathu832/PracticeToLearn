@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Research Institute — Accessibility Audit Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- VIOLATION LEGEND — color-coded reference for all 7 injected WCAG violations -->
+  <aside class="violation-legend" aria-label="Accessibility Violation Legend">
+    <h2>Accessibility Violations — WCAG Reference Legend</h2>
+    <ul>
+      <li><span class="legend-swatch swatch-red"></span><strong>1.1.1</strong> Missing Alt Text (red border)</li>
+      <li><span class="legend-swatch swatch-orange"></span><strong>4.1.2</strong> Missing ARIA Properties (orange border)</li>
+      <li><span class="legend-swatch swatch-yellow"></span><strong>1.3.1</strong> Unclear Content Structure (yellow border)</li>
+      <li><span class="legend-swatch swatch-green"></span><strong>2.4.1</strong> Missing Bypass Block (green banner)</li>
+      <li><span class="legend-swatch swatch-purple"></span><strong>3.2.2</strong> Unpredictable Input (purple border)</li>
+      <li><span class="legend-swatch swatch-pink"></span><strong>4.1.1</strong> Faulty Code Parsing (pink border + sticky footer)</li>
+      <li><span class="legend-swatch swatch-blue"></span><strong>1.4.3</strong> Insufficient Color Contrast (blue border)</li>
+    </ul>
+  </aside>
+
+  <!-- ============================================================
+       WCAG 2.4.1 VIOLATION — Missing Content Bypass
+       No skip-to-main-content link is present before the navigation.
+       Keyboard users must tab through every nav link to reach the main
+       content area on every page load.
+       Fix: add <a href="#main-content" class="skip-link">Skip to main content</a>
+            as the very first focusable element inside <body>.
+       ============================================================ -->
+  <div class="violation-banner-2-4-1">
+    ⚠️ 2.4.1 — No skip navigation link present on this page
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+
+      <div class="site-logo-area">
+
+        <!-- ============================================================
+             WCAG 1.1.1 VIOLATION — Image without Alt Text (instance 1)
+             This <img> uses alt="" (empty string) for an informational logo.
+             An empty alt is acceptable only for purely decorative images;
+             institute logos convey identity and must have descriptive text.
+             Fix: alt="DFG — German Research Foundation Logo"
+             ============================================================ -->
+        <div class="violation-wrapper vw-1-1-1">
+          <!-- VIOLATION: 1.1.1 - Image without Alt Text -->
+          <img decoding="async" src="https://www.ruhrpm.de/wp-content/uploads/2025/10/DFG-logo-blau.svg" class="attachment-full size-full" alt="">
+          <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text</span>
+        </div>
+
+        <div class="site-name">
+          <h1>Global Research Institute</h1>
+          <p class="tagline">Advancing knowledge through independent inquiry</p>
+        </div>
+      </div>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+
+        <!-- ============================================================
+             WCAG 3.2.2 VIOLATION — Unpredictable Input Actions
+             The <select> below fires an alert() automatically on onchange,
+             without any prior warning or user-initiated submit action.
+             WCAG 3.2.2 requires that changing a form control does not
+             cause an unexpected change of context.
+             Fix: remove onchange; add a separate "Go" button that the
+             user must explicitly activate to trigger navigation.
+             ============================================================ -->
+        <div class="violation-wrapper vw-3-2-2">
+          <!-- VIOLATION: 3.2.2 - Auto-triggered action on input change (no submit button) -->
+          <select id="section-jump" onchange="handleNavSelect(this)" aria-label="Jump to section">
+            <option value="">Jump to section…</option>
+            <option value="about">About</option>
+            <option value="research">Research</option>
+            <option value="publications">Publications</option>
+            <option value="contact">Contact</option>
+          </select>
+          <span class="violation-tag">⚠️ 3.2.2 — Auto-triggered action on input</span>
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Clean hero — no violations here -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <h2>Shaping the Future of Scientific Research</h2>
+      <p>The Global Research Institute is an independent non-profit foundation dedicated to fostering excellence in science, scholarship, and the humanities since 1951.</p>
+      <a href="#about" class="btn-primary">Learn About Us</a>
+    </div>
+  </section>
+
+  <!-- id="main-content" exists but no skip link points to it — confirming the 2.4.1 violation -->
+  <main id="main-content" class="main-wrapper">
+
+    <!-- ====================================================
+         ABOUT SECTION
+         Violation 3a — WCAG 1.3.1: Unclear Content Structure (fake headings)
+         ==================================================== -->
+    <section id="about" class="content-section">
+
+      <!-- ============================================================
+           WCAG 1.3.1 VIOLATION — Unclear Content Structure (fake headings)
+           The visual "headings" in this section are <b> and <span> elements
+           styled with inline font sizes. Screen readers cannot identify
+           them as headings, so users cannot navigate by heading structure.
+           Fix: replace <b> with <h2> and <span style="font-size:large">
+                with <h3> elements.
+           ============================================================ -->
+      <div class="violation-wrapper vw-1-3-1">
+        <!-- VIOLATION: 1.3.1 - Visual headings using <b> and inline font-size instead of <h2>/<h3> -->
+        <b style="display:block; font-size:1.55rem; margin-bottom:0.5rem; color:#1a1a2e; line-height:1.3;">About Our Institute</b>
+
+        <p>Founded in 1951, the Global Research Institute has been at the forefront of interdisciplinary research for over seven decades. Our scholars collaborate with universities, governments, and civil society organisations worldwide to address the most pressing challenges of our time.</p>
+
+        <span style="display:block; font-size:large; font-weight:bold; margin:1.2rem 0 0.4rem; color:#2d3a6b;">Our Mission</span>
+        <p>We are committed to producing rigorous, independent research that informs policy, advances human understanding, and contributes to a more equitable and sustainable world. We do not accept direction from funders on the conclusions of our work.</p>
+
+        <span style="display:block; font-size:large; font-weight:bold; margin:1.2rem 0 0.4rem; color:#2d3a6b;">Core Values</span>
+        <ul>
+          <li>Integrity and independence in all research activities</li>
+          <li>Openness and accessibility of knowledge</li>
+          <li>Collaboration across disciplines and national borders</li>
+          <li>Long-term commitment to societal impact</li>
+        </ul>
+
+        <span class="violation-tag">⚠️ 1.3.1 — Unclear Structure (fake headings)</span>
+      </div>
+
+    </section>
+
+    <!-- ====================================================
+         RESEARCH SECTION
+         Violation 1b — WCAG 1.1.1: Second image without alt text
+         Violation 2  — WCAG 4.1.2: Missing ARIA property on custom widget
+         ==================================================== -->
+    <section id="research" class="content-section">
+      <h2 class="section-heading">Research Areas</h2>
+      <div class="research-grid">
+
+        <div class="research-main">
+
+          <article class="research-article">
+            <h3>Climate &amp; Environmental Policy</h3>
+            <p>Our climate research team investigates the intersection of environmental science and public policy. Recent projects include a five-year longitudinal study on carbon pricing mechanisms in emerging economies and a comparative analysis of national adaptation strategies.</p>
+
+            <!-- ============================================================
+                 WCAG 1.1.1 VIOLATION — Image without Alt Text (instance 2)
+                 This research figure has alt="" (empty string). Informational
+                 images such as charts and data visualisations must have
+                 descriptive alt text so screen reader users can access
+                 the information conveyed by the image.
+                 Fix: alt="Bar chart comparing per-capita carbon emissions
+                      by world region from 2019 to 2024"
+                 ============================================================ -->
+            <div class="violation-wrapper vw-1-1-1">
+              <!-- VIOLATION: 1.1.1 - Second image without Alt Text -->
+              <img src="https://via.placeholder.com/560x240?text=Research+Data+Chart" alt="" style="width:100%; border-radius:3px; display:block;">
+              <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text</span>
+            </div>
+
+            <p>Our findings are submitted directly to legislative bodies across 40 countries. The team is currently advising three national governments on emissions reporting frameworks ahead of the 2026 review cycle.</p>
+          </article>
+
+          <article class="research-article">
+            <h3>Digital Governance &amp; Technology Ethics</h3>
+            <p>As artificial intelligence reshapes institutions and societies, our digital governance programme examines the accountability frameworks, regulatory approaches, and ethical standards needed to ensure that technological change serves the public interest.</p>
+            <p>The programme collaborates with technical universities, civil liberties organisations, and standards bodies to develop practical guidance for policymakers and technologists alike. Our 2025 white paper on algorithmic accountability has been cited in parliamentary committee proceedings in six countries.</p>
+          </article>
+
+        </div>
+
+        <aside class="research-sidebar">
+          <h3>Quick Links</h3>
+          <ul class="sidebar-links">
+            <li><a href="#publications">Latest Publications</a></li>
+            <li><a href="#contact">Work With Us</a></li>
+            <li><a href="#about">About the Institute</a></li>
+          </ul>
+
+          <hr>
+
+          <!-- ============================================================
+               WCAG 4.1.2 VIOLATION — Missing ARIA Properties
+               The custom widget below has role="checkbox" but is missing
+               the required aria-checked state. ARIA specification mandates
+               that all required states and properties for a role must be
+               present for assistive technologies to convey correct semantics.
+               Fix: add aria-checked="false" on the element, and toggle
+                    aria-checked="true"/"false" programmatically on activation.
+               ============================================================ -->
+          <div class="sidebar-widget">
+            <h3>Newsletter</h3>
+            <p>Stay updated with our latest research:</p>
+            <div class="violation-wrapper vw-4-1-2">
+              <!-- VIOLATION: 4.1.2 - role="checkbox" without required aria-checked state -->
+              <div role="checkbox" tabindex="0" class="custom-checkbox" id="newsletter-check">
+                Subscribe to the monthly digest
+              </div>
+              <p class="widget-hint">Click or press Space to toggle</p>
+              <span class="violation-tag">⚠️ 4.1.2 — Missing ARIA Property</span>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="sidebar-widget">
+            <h3>Upcoming Events</h3>
+            <ul class="events-list">
+              <li><strong>May 8</strong> — Annual Research Symposium</li>
+              <li><strong>May 22</strong> — AI Governance Workshop</li>
+              <li><strong>Jun 3</strong> — Public Lecture: Climate Justice</li>
+              <li><strong>Jun 17</strong> — Early Career Researcher Forum</li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ====================================================
+         PUBLICATIONS SECTION
+         Violation 3b — WCAG 1.3.1: Fake table built with <div> elements
+         ==================================================== -->
+    <section id="publications" class="content-section">
+      <h2 class="section-heading">Recent Publications</h2>
+      <p>Browse our latest research outputs across all programme areas. For full open-access archives, visit our publications repository.</p>
+
+      <!-- ============================================================
+           WCAG 1.3.1 VIOLATION — Unclear Content Structure (fake table)
+           The tabular data below uses <div> elements styled to look like
+           a table. Screen readers cannot convey column/row relationships,
+           table header associations, or any table-level semantics.
+           Fix: replace with <table>, <thead>, <th scope="col">, <tbody>, <td>.
+           Do NOT add role="table"/"row"/"cell" to divs — use real table markup.
+           ============================================================ -->
+      <div class="violation-wrapper vw-1-3-1" style="margin-top:1.5rem;">
+        <!-- VIOLATION: 1.3.1 - Tabular data built with <div> elements instead of <table> -->
+        <div class="fake-table">
+          <div class="fake-tr fake-th-row">
+            <div class="fake-td">Publication Title</div>
+            <div class="fake-td">Programme Area</div>
+            <div class="fake-td">Year</div>
+            <div class="fake-td">Lead Author</div>
+          </div>
+          <div class="fake-tr">
+            <div class="fake-td">Carbon Pricing in Transition Economies: A Five-Year Review</div>
+            <div class="fake-td">Climate Policy</div>
+            <div class="fake-td">2025</div>
+            <div class="fake-td">Dr. M. Osei</div>
+          </div>
+          <div class="fake-tr">
+            <div class="fake-td">Accountability Gaps in Algorithmic Decision-Making</div>
+            <div class="fake-td">Digital Governance</div>
+            <div class="fake-td">2025</div>
+            <div class="fake-td">Prof. L. Schneider</div>
+          </div>
+          <div class="fake-tr">
+            <div class="fake-td">Gender Equity Indicators in STEM Funding: A Cross-National Study</div>
+            <div class="fake-td">Research Policy</div>
+            <div class="fake-td">2024</div>
+            <div class="fake-td">Dr. A. Patel</div>
+          </div>
+          <div class="fake-tr">
+            <div class="fake-td">Urban Resilience in the Face of Climate Extremes</div>
+            <div class="fake-td">Climate Policy</div>
+            <div class="fake-td">2024</div>
+            <div class="fake-td">Dr. R. Torres</div>
+          </div>
+          <div class="fake-tr">
+            <div class="fake-td">Open Science Mandates: Adoption, Compliance, and Gaps</div>
+            <div class="fake-td">Research Policy</div>
+            <div class="fake-td">2023</div>
+            <div class="fake-td">Prof. Y. Nakamura</div>
+          </div>
+        </div>
+        <span class="violation-tag">⚠️ 1.3.1 — Unclear Structure (fake table)</span>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TRANSPARENCY SECTION
+         Violation 7 — WCAG 1.4.3: Insufficient Color Contrast
+         ==================================================== -->
+    <section id="contrast" class="content-section">
+      <h2 class="section-heading">Transparency &amp; Funding</h2>
+      <p>The Global Research Institute is committed to full transparency in its funding and operations. Our annual reports and financial statements are publicly available.</p>
+
+      <!-- ============================================================
+           WCAG 1.4.3 VIOLATION — Insufficient Color Contrast
+           The paragraph below uses color:#AAAAAA on background:#FFFFFF.
+           Approximate contrast ratio: 2.32:1 — well below the 4.5:1
+           minimum required for normal-size text at WCAG Level AA.
+           The wrapper forces background:#FFFFFF regardless of OS dark-mode
+           preference so the contrast violation is always demonstrable.
+           Fix: use foreground #767676 (contrast 4.54:1) or darker.
+           ============================================================ -->
+      <div class="violation-wrapper vw-1-4-3" style="background:#FFFFFF;">
+        <!-- VIOLATION: 1.4.3 - #AAAAAA text on #FFFFFF background (contrast ratio ~2.32:1, fails 4.5:1) -->
+        <p style="color:#AAAAAA; background:#FFFFFF; padding:0.5rem 0; line-height:1.8;">
+          Our core funding comes from a consortium of European research foundations,
+          supplemented by project-specific grants from national science agencies.
+          We do not accept funding from commercial entities with a direct interest
+          in our research outcomes. The Institute's endowment, established in 1965,
+          provides approximately 30% of our annual operating budget.
+          Full audited accounts for the financial year 2024–25 are available
+          on request from our finance department at finance@global-research.example.org.
+        </p>
+        <span class="violation-tag">⚠️ 1.4.3 — Insufficient Color Contrast</span>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         CONTACT SECTION
+         Violation 6 — WCAG 4.1.1: Faulty Code Parsing
+           a) Duplicate id="contact-label" on two elements
+           b) Deprecated 'align' attribute on <p>
+           c) Unclosed <p> tag
+         ==================================================== -->
+    <section id="contact" class="content-section">
+      <h2 class="section-heading">Contact Us</h2>
+      <p>We welcome enquiries from researchers, policymakers, journalists, and members of the public. Our communications team is available Monday to Friday.</p>
+
+      <div class="contact-grid">
+
+        <div class="contact-form-area">
+          <h3>Send an Enquiry</h3>
+          <form class="contact-form" onsubmit="return false;">
+
+            <!-- ============================================================
+                 WCAG 4.1.1 VIOLATION — Duplicate id Attribute
+                 Both <label> elements below use id="contact-label".
+                 HTML requires all id values to be unique within a document.
+                 Duplicate IDs break AT's ability to associate labels with
+                 controls and create unpredictable DOM behaviour.
+                 Fix: use id="name-label" and id="email-label" respectively.
+                 ============================================================ -->
+
+            <!-- VIOLATION: 4.1.1 - First element with id="contact-label" -->
+            <div class="form-group">
+              <label id="contact-label" for="name-field">Your Name</label>
+              <input id="name-field" type="text" name="name" placeholder="Dr. Jane Smith">
+            </div>
+
+            <!-- VIOLATION: 4.1.1 - Second element with duplicate id="contact-label" -->
+            <div class="form-group">
+              <label id="contact-label" for="email-field">Email Address</label>
+              <input id="email-field" type="email" name="email" placeholder="jane.smith@example.org">
+            </div>
+
+            <div class="form-group">
+              <label for="subject-field">Subject</label>
+              <input id="subject-field" type="text" name="subject" placeholder="Research collaboration inquiry">
+            </div>
+
+            <div class="form-group">
+              <label for="message-field">Message</label>
+              <textarea id="message-field" name="message" rows="5" placeholder="Please describe your enquiry…"></textarea>
+            </div>
+
+            <!-- ============================================================
+                 WCAG 4.1.1 VIOLATION — Deprecated Attribute
+                 The 'align' attribute on <p> is obsolete in HTML5 and must
+                 not be used. Parsers and AT may handle it inconsistently.
+                 Fix: use CSS text-align:center on the element instead.
+                 ============================================================ -->
+            <!-- VIOLATION: 4.1.1 - Deprecated 'align' attribute on <p> -->
+            <p align="center">
+              <button type="submit" class="btn-primary">Submit Enquiry</button>
+            </p>
+
+            <!-- ============================================================
+                 WCAG 4.1.1 VIOLATION — Unclosed Tag
+                 The <p> element below is intentionally not closed with </p>.
+                 Browsers apply error-recovery rules (closing the <p> before
+                 the </div>) so the layout remains intact, but the source
+                 markup fails HTML validation.
+                 Fix: close every element with its corresponding end tag.
+                 ============================================================ -->
+            <div class="violation-wrapper vw-4-1-1">
+              <!-- VIOLATION: 4.1.1 - Unclosed <p> tag (missing </p>) -->
+              <p>Note: All enquiries are handled in accordance with our privacy policy and data protection obligations under the GDPR. We aim to respond within five working days.
+              <span class="violation-tag">⚠️ 4.1.1 — Faulty Parsing (unclosed tag)</span>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="contact-info">
+          <h3>Our Office</h3>
+          <address>
+            Global Research Institute<br>
+            Wissenschaftsallee 12<br>
+            10117 Berlin, Germany<br>
+            <br>
+            <strong>Tel:</strong> +49 30 1234 5678<br>
+            <strong>Email:</strong> info@global-research.example.org
+          </address>
+
+          <hr>
+
+          <h3>Working Hours</h3>
+          <p>Monday – Friday: 09:00 – 17:30 CET<br>
+          Closed on German public holidays</p>
+
+          <hr>
+
+          <h3>Press Enquiries</h3>
+          <p>Members of the media should contact our communications team at press@global-research.example.org or call the press line on +49 30 1234 5679.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <strong>Global Research Institute</strong>
+        <p>An independent foundation dedicated to advancing knowledge in science, scholarship, and the humanities since 1951.</p>
+      </div>
+      <div class="footer-col">
+        <strong>Navigate</strong>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <strong>Legal</strong>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Imprint</a></li>
+          <li><a href="#">Accessibility Statement</a></li>
+          <li><a href="#">Data Protection</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <strong>&copy; 2025 Global Research Institute</strong>
+        <p>Registered in Germany. All rights reserved.</p>
+        <p class="footer-note">This page is an accessibility audit training demo. All violations are intentional and annotated.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       WCAG 4.1.1 VIOLATION — Fixed Sticky Badge
+       Persistent reminder that this page contains invalid HTML.
+       aria-hidden="true" prevents screen readers from announcing
+       this decorative badge on every focus change.
+       ============================================================ -->
+  <!-- VIOLATION: 4.1.1 - Sticky badge: invalid/duplicate HTML present on page -->
+  <div class="violation-sticky-4-1-1" aria-hidden="true">
+    ⚠️ 4.1.1 — Invalid/duplicate HTML detected on this page (duplicate id, unclosed tag, deprecated attribute)
+  </div>
+
+  <script>
+    // ============================================================
+    // WCAG 3.2.2 VIOLATION — Unpredictable Input Actions
+    //
+    // This handler fires automatically when the user selects an option
+    // in the navigation <select>, triggering an alert() without any
+    // prior warning or explicit submit action by the user.
+    //
+    // WCAG 3.2.2 requires that changing a form control does not by
+    // itself cause a change of context. Providing a "Go" button that
+    // the user must explicitly activate is the conformant pattern.
+    //
+    // Fix: remove onchange from the <select>; pair it with a <button>
+    //      that the user presses to trigger navigation.
+    // ============================================================
+    function handleNavSelect(el) {
+      var val = el.value;
+      if (val) {
+        // VIOLATION: 3.2.2 — alert fires automatically on input change, no confirmation step
+        alert(
+          'Jumping to section: ' + val.toUpperCase() + '\n\n' +
+          '[WCAG 3.2.2 Demo]\n' +
+          'This alert was triggered automatically by changing the dropdown\n' +
+          'selection — no submit button was clicked. This is the violation.\n\n' +
+          'A conformant design would require an explicit "Go" button press.'
+        );
+        el.value = ''; // reset so the demo can be repeated
+      }
+    }
+
+    // ============================================================
+    // WCAG 4.1.2 DEMO — Custom Checkbox Interaction
+    //
+    // The widget toggles a visual 'checked' class on click/keypress,
+    // but aria-checked is INTENTIONALLY never updated.
+    //
+    // A screen reader reading role="checkbox" will announce the element
+    // as a checkbox but can never report its state because aria-checked
+    // is absent. The visual state change is invisible to AT.
+    //
+    // Fix: toggle aria-checked="true"/"false" on each activation:
+    //      this.setAttribute('aria-checked',
+    //        this.classList.contains('checked') ? 'true' : 'false');
+    // ============================================================
+    var checkbox = document.querySelector('[role="checkbox"]');
+    if (checkbox) {
+      checkbox.addEventListener('click', function () {
+        this.classList.toggle('checked');
+        // INTENTIONAL OMISSION: aria-checked is never set here — this is the violation
+      });
+
+      checkbox.addEventListener('keydown', function (e) {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

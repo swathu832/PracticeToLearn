@@ -1,0 +1,4 @@
+node_modules/
+.claude/
+.claude-flow/
+.mcp.json

@@ -12,6 +12,7 @@
   <!-- VIOLATION LEGEND — color-coded reference for all 7 injected WCAG violations -->
   <aside class="violation-legend" aria-label="Accessibility Violation Legend">
     <h2>Accessibility Violations — WCAG Reference Legend</h2>
+    <p class="legend-note">Each category appears in the main page <strong>and again</strong> in <a href="#monitor-round">Monitor Round 2</a> (with <code>data-wcag</code> / monitor hints for AI2AccessPilot rescans).</p>
     <ul>
       <li><span class="legend-swatch swatch-red"></span><strong>1.1.1</strong> Missing Alt Text (red border)</li>
       <li><span class="legend-swatch swatch-orange"></span><strong>4.1.2</strong> Missing ARIA Properties (orange border)</li>
@@ -421,6 +422,177 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         MONITOR ROUND 2 — duplicate set of all 7 category issues
+         Purpose: give Monitoring / rescan a second annotated cluster
+         with data-wcag + data-monitor-hint attributes and visible hints.
+         ============================================================ -->
+    <section id="monitor-round" class="content-section monitor-round" data-monitor-section="round-2" data-monitor-hint="Second annotated cluster of all 7 AI2AccessPilot category issues for rescan / monitoring deltas.">
+
+      <h2 class="section-heading">Monitor Round 2 — Category issues (duplicate set)</h2>
+      <p class="monitor-intro">
+        This block repeats every category issue with the same colour highlights plus
+        <strong>monitor hints</strong> (<code>data-wcag</code>, <code>data-monitor-hint</code>)
+        so a monitoring scan can detect new instances after the first page pass.
+      </p>
+
+      <!-- 2.4.1 again — still no skip link on page; local reminder banner -->
+      <div
+        class="violation-banner-2-4-1 monitor-banner"
+        data-wcag="2.4.1"
+        data-monitor-hint="Page still has no skip-to-main link before navigation; keyboard users must tab through all header links."
+      >
+        ⚠️ 2.4.1 — No skip navigation link present on this page (Monitor Round 2)
+      </div>
+      <p class="monitor-hint" aria-hidden="true">
+        <strong>Monitor hint · 2.4.1:</strong> Expect finding: missing bypass block / skip link. Fix: first focusable element should be <code>&lt;a href="#main-content" class="skip-link"&gt;Skip to main content&lt;/a&gt;</code>.
+      </p>
+
+      <!-- 1.1.1 again -->
+      <div
+        class="violation-wrapper vw-1-1-1"
+        data-wcag="1.1.1"
+        data-monitor-hint="Informational image with empty alt text in Monitor Round 2."
+      >
+        <img src="https://via.placeholder.com/640x200?text=Campus+Map+Infographic" alt="" style="width:100%; border-radius:3px; display:block;">
+        <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text (Round 2)</span>
+        <p class="monitor-hint" aria-hidden="true">
+          <strong>Monitor hint · 1.1.1:</strong> Detect <code>img</code> with empty/missing <code>alt</code>. Suggested alt: “Campus map showing research buildings A–D and visitor entrance.”
+        </p>
+      </div>
+
+      <!-- 1.3.1 again — fake headings -->
+      <div
+        class="violation-wrapper vw-1-3-1"
+        data-wcag="1.3.1"
+        data-monitor-hint="Visual headings implemented as bold/span instead of h2/h3 in Monitor Round 2."
+      >
+        <b style="display:block; font-size:1.4rem; margin-bottom:0.5rem; color:#1a1a2e;">Partner Network Overview</b>
+        <p>We coordinate with research partners across Europe. The headings below are visual only and are not exposed as heading landmarks.</p>
+        <span style="display:block; font-size:large; font-weight:bold; margin:1rem 0 0.35rem; color:#2d3a6b;">Regional Hubs</span>
+        <p>Berlin · Amsterdam · Lisbon · Helsinki</p>
+        <span style="display:block; font-size:large; font-weight:bold; margin:1rem 0 0.35rem; color:#2d3a6b;">Shared Facilities</span>
+        <p>Secure data rooms, shared lab booking, and joint seminar calendars.</p>
+        <span class="violation-tag">⚠️ 1.3.1 — Unclear Structure (fake headings, Round 2)</span>
+        <p class="monitor-hint" aria-hidden="true">
+          <strong>Monitor hint · 1.3.1:</strong> Flag styled <code>&lt;b&gt;</code> / large <code>&lt;span&gt;</code> used as headings. Fix: real <code>&lt;h2&gt;</code>/<code>&lt;h3&gt;</code>.
+        </p>
+      </div>
+
+      <!-- 1.3.1 again — fake list/table-like rows -->
+      <div
+        class="violation-wrapper vw-1-3-1"
+        data-wcag="1.3.1"
+        data-monitor-hint="Tabular fellowship roster built with div rows instead of table markup."
+      >
+        <div class="fake-table">
+          <div class="fake-tr fake-th-row">
+            <div class="fake-td">Fellow</div>
+            <div class="fake-td">Programme</div>
+            <div class="fake-td">Term</div>
+          </div>
+          <div class="fake-tr">
+            <div class="fake-td">Dr. K. Adeyemi</div>
+            <div class="fake-td">Visiting Scholar</div>
+            <div class="fake-td">2025–26</div>
+          </div>
+          <div class="fake-tr">
+            <div class="fake-td">Prof. I. Novak</div>
+            <div class="fake-td">Senior Fellow</div>
+            <div class="fake-td">2024–26</div>
+          </div>
+        </div>
+        <span class="violation-tag">⚠️ 1.3.1 — Unclear Structure (fake table, Round 2)</span>
+        <p class="monitor-hint" aria-hidden="true">
+          <strong>Monitor hint · 1.3.1:</strong> Detect div-based “table”. Fix: native <code>&lt;table&gt;</code> with <code>&lt;th scope="col"&gt;</code>.
+        </p>
+      </div>
+
+      <!-- 4.1.2 again -->
+      <div
+        class="violation-wrapper vw-4-1-2"
+        data-wcag="4.1.2"
+        data-monitor-hint="Custom switch with role=checkbox but no aria-checked in Monitor Round 2."
+      >
+        <p>Alert preferences (custom control — missing required ARIA state):</p>
+        <div role="checkbox" tabindex="0" class="custom-checkbox" id="monitor-alert-check">
+          Email me when new monitor findings appear
+        </div>
+        <p class="widget-hint">Click or press Space to toggle</p>
+        <span class="violation-tag">⚠️ 4.1.2 — Missing ARIA Property (Round 2)</span>
+        <p class="monitor-hint" aria-hidden="true">
+          <strong>Monitor hint · 4.1.2:</strong> Element has <code>role="checkbox"</code> without <code>aria-checked</code>. Fix: set and toggle <code>aria-checked="true|false"</code>.
+        </p>
+      </div>
+
+      <!-- 3.2.2 again -->
+      <div
+        class="violation-wrapper vw-3-2-2"
+        data-wcag="3.2.2"
+        data-monitor-hint="Select fires alert on change without explicit submit in Monitor Round 2."
+      >
+        <label for="monitor-lang">Preferred language (auto-triggers)</label>
+        <select id="monitor-lang" onchange="handleMonitorSelect(this)">
+          <option value="">Choose language…</option>
+          <option value="en">English</option>
+          <option value="de">German</option>
+          <option value="fr">French</option>
+        </select>
+        <span class="violation-tag">⚠️ 3.2.2 — Auto-triggered action on input (Round 2)</span>
+        <p class="monitor-hint" aria-hidden="true">
+          <strong>Monitor hint · 3.2.2:</strong> Changing the control causes a context change (alert) with no Go/Submit. Fix: remove onchange; require an explicit button.
+        </p>
+      </div>
+
+      <!-- 1.4.3 again -->
+      <div
+        class="violation-wrapper vw-1-4-3"
+        data-wcag="1.4.3"
+        data-monitor-hint="Low-contrast #AAAAAA text on white in Monitor Round 2."
+        style="background:#FFFFFF;"
+      >
+        <p style="color:#AAAAAA; background:#FFFFFF; padding:0.5rem 0; line-height:1.8;">
+          Monitor Round 2 contrast sample: this secondary note uses light grey on white
+          (~2.32:1) and fails WCAG AA 4.5:1 for normal text. Rescans should still flag it
+          as 1.4.3 even when other copy on the page has sufficient contrast.
+        </p>
+        <span class="violation-tag">⚠️ 1.4.3 — Insufficient Color Contrast (Round 2)</span>
+        <p class="monitor-hint" aria-hidden="true">
+          <strong>Monitor hint · 1.4.3:</strong> Measure contrast of grey body text vs white. Fail below 4.5:1. Fix: use #767676 or darker.
+        </p>
+      </div>
+
+      <!-- 4.1.1 again — duplicate id + deprecated attr + unclosed tag -->
+      <div
+        class="violation-wrapper vw-4-1-1"
+        data-wcag="4.1.1"
+        data-monitor-hint="Duplicate id monitor-field-label, deprecated align attribute, and unclosed p in Monitor Round 2."
+      >
+        <form class="contact-form" onsubmit="return false;" style="max-width:28rem;">
+          <!-- VIOLATION: 4.1.1 - duplicate id="monitor-field-label" -->
+          <div class="form-group">
+            <label id="monitor-field-label" for="monitor-org">Organisation</label>
+            <input id="monitor-org" type="text" name="org" placeholder="Partner university">
+          </div>
+          <div class="form-group">
+            <label id="monitor-field-label" for="monitor-role">Your role</label>
+            <input id="monitor-role" type="text" name="role" placeholder="Research coordinator">
+          </div>
+          <!-- VIOLATION: 4.1.1 - deprecated align -->
+          <p align="left">
+            <button type="submit" class="btn-primary">Register interest</button>
+          </p>
+          <!-- VIOLATION: 4.1.1 - unclosed p -->
+          <p>Monitor Round 2 parsing note: this paragraph is intentionally left unclosed so validators and monitors can detect faulty HTML recovery.
+        </form>
+        <span class="violation-tag">⚠️ 4.1.1 — Faulty Parsing (Round 2)</span>
+        <p class="monitor-hint" aria-hidden="true">
+          <strong>Monitor hint · 4.1.1:</strong> Flag duplicate <code>id="monitor-field-label"</code>, deprecated <code>align</code>, and unclosed <code>&lt;p&gt;</code>.
+        </p>
+      </div>
+
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -436,6 +608,7 @@
           <li><a href="#research">Research</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="#monitor-round">Monitor Round 2</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -496,22 +669,24 @@
       }
     }
 
+    // Monitor Round 2 — same 3.2.2 pattern (auto alert on change)
+    function handleMonitorSelect(el) {
+      var val = el.value;
+      if (val) {
+        alert(
+          'Language set to: ' + val.toUpperCase() + '\n\n' +
+          '[WCAG 3.2.2 Demo — Monitor Round 2]\n' +
+          'This alert fired automatically on select change with no Submit button.'
+        );
+        el.value = '';
+      }
+    }
+
     // ============================================================
-    // WCAG 4.1.2 DEMO — Custom Checkbox Interaction
-    //
-    // The widget toggles a visual 'checked' class on click/keypress,
-    // but aria-checked is INTENTIONALLY never updated.
-    //
-    // A screen reader reading role="checkbox" will announce the element
-    // as a checkbox but can never report its state because aria-checked
-    // is absent. The visual state change is invisible to AT.
-    //
-    // Fix: toggle aria-checked="true"/"false" on each activation:
-    //      this.setAttribute('aria-checked',
-    //        this.classList.contains('checked') ? 'true' : 'false');
+    // WCAG 4.1.2 DEMO — Custom Checkbox Interaction (all instances)
+    // aria-checked is INTENTIONALLY never updated on any checkbox widget.
     // ============================================================
-    var checkbox = document.querySelector('[role="checkbox"]');
-    if (checkbox) {
+    document.querySelectorAll('[role="checkbox"]').forEach(function (checkbox) {
       checkbox.addEventListener('click', function () {
         this.classList.toggle('checked');
         // INTENTIONAL OMISSION: aria-checked is never set here — this is the violation
@@ -523,7 +698,7 @@
           this.click();
         }
       });
-    }
+    });
   </script>
 
 </body>

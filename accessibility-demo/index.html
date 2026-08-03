@@ -14,7 +14,8 @@
     <h2>Accessibility Violations — WCAG Reference Legend</h2>
     <p class="legend-note">Each category appears in the main page <strong>and again</strong> in <a href="#monitor-round">Monitor Round 2</a> (with <code>data-wcag</code> / monitor hints for AI2AccessPilot rescans).</p>
     <ul>
-      <li><span class="legend-swatch swatch-red"></span><strong>1.1.1</strong> Missing Alt Text (red border)</li>
+      <li><span class="legend-swatch swatch-red"></span><strong>1.1.1</strong> Missing Alt Text (red border) — non-decorative image with empty alt</li>
+      <li><span class="legend-swatch swatch-teal"></span><strong>1.1.1 OK</strong> Decorative image with alt="" (teal border — correct)</li>
       <li><span class="legend-swatch swatch-orange"></span><strong>4.1.2</strong> Missing ARIA Properties (orange border)</li>
       <li><span class="legend-swatch swatch-yellow"></span><strong>1.3.1</strong> Unclear Content Structure (yellow border)</li>
       <li><span class="legend-swatch swatch-green"></span><strong>2.4.1</strong> Missing Bypass Block (green banner)</li>
@@ -46,11 +47,11 @@
              This <img> uses alt="" (empty string) for an informational logo.
              An empty alt is acceptable only for purely decorative images;
              institute logos convey identity and must have descriptive text.
-             Fix: alt="DFG — German Research Foundation Logo"
+             Fix: alt="GRI — Global Research Institute logo"
              ============================================================ -->
         <div class="violation-wrapper vw-1-1-1">
           <!-- VIOLATION: 1.1.1 - Image without Alt Text -->
-          <img decoding="async" src="https://www.ruhrpm.de/wp-content/uploads/2025/10/DFG-logo-blau.svg" class="attachment-full size-full" alt="">
+          <img decoding="async" src="images/institute-logo.svg" class="attachment-full size-full" alt="">
           <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text</span>
         </div>
 
@@ -100,6 +101,28 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       WCAG 1.1.1 CORRECT — Decorative image with empty alt
+       WHY THIS IS DECORATIVE:
+       - Abstract shapes only; no icons, charts, or meaningful symbols.
+       - Page understanding does not change if this image is removed.
+       - Empty alt="" (and role="presentation") is the correct pattern.
+       ============================================================ -->
+  <div class="decorative-example-band">
+    <div class="correct-example-wrapper">
+      <img
+        decoding="async"
+        width="1200"
+        height="200"
+        src="images/decorative-pattern.svg"
+        class="decorative-pattern"
+        alt=""
+        role="presentation"
+      >
+      <span class="correct-example-tag">✓ 1.1.1 OK — Decorative image (alt="" is correct)</span>
+    </div>
+  </div>
+
   <!-- id="main-content" exists but no skip link points to it — confirming the 2.4.1 violation -->
   <main id="main-content" class="main-wrapper">
 
@@ -140,8 +163,59 @@
     </section>
 
     <!-- ====================================================
+         FEHLERURSACHEN — Non-decorative informational image (1.1.1)
+         Layout mirrors typical Bitkom “three equal root causes” graphic:
+         text explains categories; diagram encodes the same meaning visually.
+         ==================================================== -->
+    <section id="fehlerursachen" class="content-section">
+      <h2 class="section-heading">Root causes of project failure</h2>
+
+      <!-- ============================================================
+           WCAG 1.1.1 VIOLATION — Non-decorative image with empty alt
+           The circular diagram is INFORMATIONAL (not decoration):
+           three equal segments = knowledge / application / PM culture.
+           alt="" incorrectly marks it decorative for assistive tech.
+           Fix example:
+             alt="Circular diagram of three equal root causes: knowledge gaps
+                  (graduation cap), lack of practical application (crossed hammers),
+                  and missing PM culture (head with lightbulb)"
+           ============================================================ -->
+      <div class="violation-wrapper vw-1-1-1">
+        <div class="fehlerursachen-layout">
+          <div class="fehlerursachen-copy">
+            <p>
+              The causes of failure — why projects are not successful — can be
+              summarised (after Bitkom) into three groups of almost equal size:
+            </p>
+            <ul>
+              <li><strong>Knowledge</strong> — project-management knowledge is only partly present, or not present at all.</li>
+              <li><strong>Application</strong> — knowledge is not applied in practice, is not implementable, or is not accepted.</li>
+              <li><strong>PM culture</strong> — knowledge and practical application are not anchored in the organisational culture.</li>
+            </ul>
+          </div>
+
+          <figure class="fehlerursachen-figure">
+            <!-- VIOLATION: non-decorative / informative image with empty alt -->
+            <img
+              decoding="async"
+              width="600"
+              height="600"
+              src="images/fehlerursachen-diagram.svg"
+              class="attachment-full size-full fehlerursachen-diagram"
+              alt=""
+            >
+            <figcaption class="trainer-note">
+              This diagram is <strong>non-decorative</strong>: icons map to the three categories.
+              Empty <code>alt=""</code> is a 1.1.1 failure — add descriptive alt text.
+            </figcaption>
+          </figure>
+        </div>
+        <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text (non-decorative)</span>
+      </div>
+    </section>
+
+    <!-- ====================================================
          RESEARCH SECTION
-         Violation 1b — WCAG 1.1.1: Second image without alt text
          Violation 2  — WCAG 4.1.2: Missing ARIA property on custom widget
          ==================================================== -->
     <section id="research" class="content-section">
@@ -153,22 +227,6 @@
           <article class="research-article">
             <h3>Climate &amp; Environmental Policy</h3>
             <p>Our climate research team investigates the intersection of environmental science and public policy. Recent projects include a five-year longitudinal study on carbon pricing mechanisms in emerging economies and a comparative analysis of national adaptation strategies.</p>
-
-            <!-- ============================================================
-                 WCAG 1.1.1 VIOLATION — Image without Alt Text (instance 2)
-                 This research figure has alt="" (empty string). Informational
-                 images such as charts and data visualisations must have
-                 descriptive alt text so screen reader users can access
-                 the information conveyed by the image.
-                 Fix: alt="Bar chart comparing per-capita carbon emissions
-                      by world region from 2019 to 2024"
-                 ============================================================ -->
-            <div class="violation-wrapper vw-1-1-1">
-              <!-- VIOLATION: 1.1.1 - Second image without Alt Text -->
-              <img src="https://via.placeholder.com/560x240?text=Research+Data+Chart" alt="" style="width:100%; border-radius:3px; display:block;">
-              <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text</span>
-            </div>
-
             <p>Our findings are submitted directly to legislative bodies across 40 countries. The team is currently advising three national governments on emissions reporting frameworks ahead of the 2026 review cycle.</p>
           </article>
 
@@ -454,7 +512,7 @@
         data-wcag="1.1.1"
         data-monitor-hint="Informational image with empty alt text in Monitor Round 2."
       >
-        <img src="https://via.placeholder.com/640x200?text=Campus+Map+Infographic" alt="" style="width:100%; border-radius:3px; display:block;">
+        <img src="images/campus-map.svg" alt="" style="width:100%; border-radius:3px; display:block;">
         <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text (Round 2)</span>
         <p class="monitor-hint" aria-hidden="true">
           <strong>Monitor hint · 1.1.1:</strong> Detect <code>img</code> with empty/missing <code>alt</code>. Suggested alt: “Campus map showing research buildings A–D and visitor entrance.”
@@ -605,6 +663,7 @@
         <strong>Navigate</strong>
         <ul>
           <li><a href="#about">About</a></li>
+          <li><a href="#fehlerursachen">Root causes</a></li>
           <li><a href="#research">Research</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#contact">Contact</a></li>

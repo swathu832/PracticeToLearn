@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48">
+  <!-- Local institute mark  not an official DFG asset -->
+  <rect width="160" height="48" rx="4" fill="#2d3a6b"/>
+  <circle cx="24" cy="24" r="12" fill="#e8a020"/>
+  <text x="44" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">GRI</text>
+  <text x="88" y="29" font-family="Arial, sans-serif" font-size="10" fill="#ccd6f6">Institute</text>
+</svg>

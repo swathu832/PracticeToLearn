@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <!-- Non-decorative: three equal root-cause categories (knowledge / application / culture) -->
+  <defs>
+    <clipPath id="disc"><circle cx="300" cy="300" r="280"/></clipPath>
+  </defs>
+  <g clip-path="url(#disc)">
+    <!-- Top-left: knowledge (teal) -->
+    <path d="M300 300 L300 20 A280 280 0 0 0 57.5 440 Z" fill="#6a868f"/>
+    <!-- Bottom: culture (gold) -->
+    <path d="M300 300 L57.5 440 A280 280 0 0 0 542.5 440 Z" fill="#d4a017"/>
+    <!-- Top-right: application (coral) -->
+    <path d="M300 300 L542.5 440 A280 280 0 0 0 300 20 Z" fill="#d4836a"/>
+  </g>
+  <circle cx="300" cy="300" r="280" fill="none" stroke="#fff" stroke-width="0"/>
+  <line x1="300" y1="300" x2="300" y2="20" stroke="#fff" stroke-width="8"/>
+  <line x1="300" y1="300" x2="57.5" y2="440" stroke="#fff" stroke-width="8"/>
+  <line x1="300" y1="300" x2="542.5" y2="440" stroke="#fff" stroke-width="8"/>
+  <!-- Graduation cap -->
+  <g fill="#fff" transform="translate(130 155)">
+    <polygon points="80,20 0,48 80,76 160,48"/>
+    <rect x="45" y="52" width="70" height="28" rx="3"/>
+    <rect x="112" y="10" width="5" height="48"/>
+    <circle cx="114.5" cy="8" r="7"/>
+  </g>
+  <!-- Crossed hammers -->
+  <g fill="#fff" transform="translate(355 145)">
+    <g transform="rotate(-38 55 60)">
+      <rect x="48" y="18" width="14" height="85" rx="3"/>
+      <rect x="28" y="8" width="54" height="28" rx="4"/>
+    </g>
+    <g transform="rotate(38 55 60)">
+      <rect x="48" y="18" width="14" height="85" rx="3"/>
+      <rect x="28" y="8" width="54" height="28" rx="4"/>
+    </g>
+  </g>
+  <!-- Head + idea -->
+  <g transform="translate(238 385)">
+    <ellipse cx="62" cy="48" rx="38" ry="46" fill="#fff"/>
+    <path d="M32 78 Q62 108 92 78" fill="#fff"/>
+    <circle cx="62" cy="42" r="16" fill="#d4a017"/>
+    <path d="M62 28 L66 44 L62 41 L58 44 Z" fill="#fff"/>
+    <rect x="55" y="54" width="14" height="10" fill="#fff" rx="1"/>
+  </g>
+</svg>

@@ -100,6 +100,7 @@ address {
 .swatch-purple { background: #7b2fbe; }
 .swatch-pink   { background: #c2185b; }
 .swatch-blue   { background: #1565c0; }
+.swatch-teal   { background: #0f766e; }
 
 /* === 2.4.1 ANNOTATION BANNER === */
 .violation-banner-2-4-1 {
@@ -141,7 +142,6 @@ address {
 .attachment-full {
   height: 44px;
   width: auto;
-  filter: brightness(0) invert(1);
   display: block;
 }
 
@@ -287,6 +287,119 @@ address {
 
 .research-article p {
   margin-bottom: 0.75rem;
+}
+
+.fehlerursachen-diagram {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 3px;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.fehlerursachen-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.fehlerursachen-copy p {
+  margin-bottom: 0.75rem;
+}
+
+.fehlerursachen-copy ul {
+  margin: 0.5rem 0 0;
+}
+
+.fehlerursachen-copy li {
+  margin-bottom: 0.55rem;
+}
+
+.fehlerursachen-figure {
+  margin: 0;
+  text-align: center;
+}
+
+.informational-figure {
+  margin: 0;
+}
+
+.figure-context {
+  font-size: 0.92rem;
+  margin-bottom: 0.5rem !important;
+  color: #1a1a2e;
+}
+
+.trainer-note {
+  margin-top: 0.65rem;
+  padding: 0.45rem 0.6rem;
+  background: #fff4f4;
+  border-left: 3px solid #cc0000;
+  font-family: Arial, sans-serif;
+  font-size: 0.78rem;
+  color: #4a2020;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.trainer-note code {
+  font-size: 0.72rem;
+  background: #f5e0e0;
+  padding: 0.05rem 0.25rem;
+  border-radius: 2px;
+}
+
+@media (max-width: 800px) {
+  .fehlerursachen-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Decorative image example (1.1.1 correct — empty alt) */
+.decorative-example-band {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem 0;
+}
+
+.correct-example-wrapper {
+  position: relative;
+  padding: 1rem;
+  padding-top: 1.6rem;
+  margin: 0;
+  border: 3px dashed #0f766e;
+  border-radius: 4px;
+  background-color: rgba(15, 118, 110, 0.04);
+}
+
+.correct-example-tag {
+  position: absolute;
+  top: -13px;
+  left: 10px;
+  font-family: monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  line-height: 1.4;
+  background: #0f766e;
+  color: #fff;
+}
+
+.decorative-pattern {
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  object-fit: cover;
+  display: block;
+  border-radius: 3px;
 }
 
 /* === SIDEBAR === */

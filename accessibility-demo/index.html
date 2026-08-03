@@ -14,8 +14,9 @@
     <h2>Accessibility Violations — WCAG Reference Legend</h2>
     <p class="legend-note">Each category appears in the main page <strong>and again</strong> in <a href="#monitor-round">Monitor Round 2</a> (with <code>data-wcag</code> / monitor hints for AI2AccessPilot rescans).</p>
     <ul>
-      <li><span class="legend-swatch swatch-red"></span><strong>1.1.1</strong> Missing Alt Text (red border) — non-decorative image with empty alt</li>
-      <li><span class="legend-swatch swatch-teal"></span><strong>1.1.1 OK</strong> Decorative image with alt="" (teal border — correct)</li>
+      <li><span class="legend-swatch swatch-red"></span><strong>1.1.1</strong> Non-decorative image with empty alt (logo, campus map)</li>
+      <li><span class="legend-swatch swatch-teal"></span><strong>1.1.1 OK (human)</strong> Redundant diagram — text on left; markup like ruhrpm (<code>alt=""</code>, no role) so tools may still flag</li>
+      <li><span class="legend-swatch swatch-red"></span><strong>1.1.1 trap</strong> Decorative image inside a link (tools often mis-flag)</li>
       <li><span class="legend-swatch swatch-orange"></span><strong>4.1.2</strong> Missing ARIA Properties (orange border)</li>
       <li><span class="legend-swatch swatch-yellow"></span><strong>1.3.1</strong> Unclear Content Structure (yellow border)</li>
       <li><span class="legend-swatch swatch-green"></span><strong>2.4.1</strong> Missing Bypass Block (green banner)</li>
@@ -102,24 +103,27 @@
   </section>
 
   <!-- ============================================================
-       WCAG 1.1.1 CORRECT — Decorative image with empty alt
-       WHY THIS IS DECORATIVE:
-       - Abstract shapes only; no icons, charts, or meaningful symbols.
-       - Page understanding does not change if this image is removed.
-       - Empty alt="" (and role="presentation") is the correct pattern.
+       WCAG 1.1.1 TRAP — Only trap on this page
+       Decorative abstract pattern is the sole content of a link.
+       Human: decorative. Tools: often flag as non-decorative / missing alt.
        ============================================================ -->
   <div class="decorative-example-band">
-    <div class="correct-example-wrapper">
-      <img
-        decoding="async"
-        width="1200"
-        height="200"
-        src="images/decorative-pattern.svg"
-        class="decorative-pattern"
-        alt=""
-        role="presentation"
-      >
-      <span class="correct-example-tag">✓ 1.1.1 OK — Decorative image (alt="" is correct)</span>
+    <div class="violation-wrapper vw-1-1-1 linked-decorative-trap">
+      <p class="trap-explainer">
+        <strong>One trap:</strong> this image is decorative (abstract only), but it is
+        the only content inside a link — tools often flag it as non-decorative.
+      </p>
+      <a href="#contact" class="linked-decorative-anchor">
+        <img
+          decoding="async"
+          width="1200"
+          height="200"
+          src="images/decorative-pattern.svg"
+          class="decorative-pattern"
+          alt=""
+        >
+      </a>
+      <span class="violation-tag">⚠️ 1.1.1 trap — Decorative-in-link (tool may flag as non-decorative)</span>
     </div>
   </div>
 
@@ -163,24 +167,16 @@
     </section>
 
     <!-- ====================================================
-         FEHLERURSACHEN — Non-decorative informational image (1.1.1)
-         Layout mirrors typical Bitkom “three equal root causes” graphic:
-         text explains categories; diagram encodes the same meaning visually.
+         FEHLERURSACHEN — Human: decorative/redundant | Tool fixture
+         Same pattern as ruhrpm.de Fehlerursachen-web.png:
+         alt="" only, no role="presentation", WordPress-style attrs.
+         Left text fully describes the three categories → human OK decorative.
+         Tools that ignore adjacent text often flag as non-decorative (false +).
          ==================================================== -->
     <section id="fehlerursachen" class="content-section">
       <h2 class="section-heading">Root causes of project failure</h2>
 
-      <!-- ============================================================
-           WCAG 1.1.1 VIOLATION — Non-decorative image with empty alt
-           The circular diagram is INFORMATIONAL (not decoration):
-           three equal segments = knowledge / application / PM culture.
-           alt="" incorrectly marks it decorative for assistive tech.
-           Fix example:
-             alt="Circular diagram of three equal root causes: knowledge gaps
-                  (graduation cap), lack of practical application (crossed hammers),
-                  and missing PM culture (head with lightbulb)"
-           ============================================================ -->
-      <div class="violation-wrapper vw-1-1-1">
+      <div class="correct-example-wrapper">
         <div class="fehlerursachen-layout">
           <div class="fehlerursachen-copy">
             <p>
@@ -195,22 +191,20 @@
           </div>
 
           <figure class="fehlerursachen-figure">
-            <!-- VIOLATION: non-decorative / informative image with empty alt -->
+            <!-- Markup mirrors ruhrpm.de: alt="" only, no role -->
             <img
               decoding="async"
-              width="600"
-              height="600"
+              width="1293"
+              height="1293"
               src="images/fehlerursachen-diagram.svg"
-              class="attachment-full size-full fehlerursachen-diagram"
+              class="attachment-full size-full"
               alt=""
+              srcset="images/fehlerursachen-diagram.svg 1293w"
+              sizes="(max-width: 1293px) 100vw, 1293px"
             >
-            <figcaption class="trainer-note">
-              This diagram is <strong>non-decorative</strong>: icons map to the three categories.
-              Empty <code>alt=""</code> is a 1.1.1 failure — add descriptive alt text.
-            </figcaption>
           </figure>
         </div>
-        <span class="violation-tag">⚠️ 1.1.1 — Missing Alt Text (non-decorative)</span>
+        <span class="correct-example-tag">✓ Human: decorative/redundant · Tool may flag non-decorative (ruhrpm-style alt="" only)</span>
       </div>
     </section>
 

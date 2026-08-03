@@ -289,7 +289,8 @@ address {
   margin-bottom: 0.75rem;
 }
 
-.fehlerursachen-diagram {
+.fehlerursachen-diagram,
+.fehlerursachen-figure img {
   width: 100%;
   max-width: 280px;
   height: auto;
@@ -400,6 +401,34 @@ address {
   object-fit: cover;
   display: block;
   border-radius: 3px;
+}
+
+.linked-decorative-trap {
+  margin-top: 0.5rem;
+}
+
+.trap-explainer {
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  color: #333;
+  margin: 0 0 0.75rem;
+  line-height: 1.45;
+}
+
+.linked-decorative-anchor {
+  display: block;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+
+.linked-decorative-anchor:focus {
+  outline: 2px solid #cc0000;
+  outline-offset: 2px;
+}
+
+.linked-decorative-anchor:hover {
+  border-color: #cc0000;
 }
 
 /* === SIDEBAR === */
